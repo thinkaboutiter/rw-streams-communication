@@ -56,6 +56,7 @@ extension ChatRoom {
         
         // add as delegate
         self.inputStream.delegate = self
+        self.outputStream.delegate = self
         
         try self.addStreamsPairToRunLoop(self.inputStream, self.outputStream)
         try self.openStreamsPair(self.inputStream, self.outputStream)
@@ -123,6 +124,22 @@ extension ChatRoom {
         self.username = username
         
         // write message to `outputStream`
+        _ = valid_data.withUnsafeBytes({ (pointer: UnsafePointer<UInt8>) -> Void in
+            self.outputStream.write(pointer, maxLength: valid_data.count)
+        })
+    }
+}
+
+// MARK: - Writing a message
+extension ChatRoom {
+    
+    func sendMessage(message: String) throws {
+        guard let valid_data: Data = "msg:\(message)".data(using: .ascii) else {
+            let errorMessage: String = "Unable to construct \(String(describing: Data.self)) object!"
+            Logger.error.message(errorMessage)
+            throw ChatRoom.ChatRoomError.General(reason: errorMessage)
+        }
+        
         _ = valid_data.withUnsafeBytes({ (pointer: UnsafePointer<UInt8>) -> Void in
             self.outputStream.write(pointer, maxLength: valid_data.count)
         })

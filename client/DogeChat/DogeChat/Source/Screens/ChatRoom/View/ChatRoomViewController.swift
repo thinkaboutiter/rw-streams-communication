@@ -128,10 +128,18 @@ fileprivate extension ChatRoomViewController {
     }
 }
 
-// MARK - Message Input Bar
+// MARK: - Message Input Bar
 extension ChatRoomViewController: MessageInputDelegate {
     func sendWasTapped(message: String) {
-        
+        do {
+            try self.chatRoom.sendMessage(message: message)
+        }
+        catch ChatRoom.ChatRoomError.General(let reason) {
+            Logger.error.message(reason)
+        }
+        catch {
+            Logger.error.message("Error: ").object(error.localizedDescription)
+        }
     }
 }
 
