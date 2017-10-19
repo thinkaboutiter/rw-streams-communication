@@ -54,7 +54,17 @@ class ChatRoomViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.setupNetworkCommunication()
+        do {
+            try self.setupNetworkCommunication()
+            try self.joinChat(with: self.username)
+        }
+        catch ChatRoom.ChatRoomError.General(let reason) {
+            Logger.error.message(reason)
+        }
+        catch {
+            Logger.error.message("Error: ").object(error.localizedDescription)
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -165,16 +175,12 @@ fileprivate extension ChatRoomViewController {
 // MARK: - Networking
 fileprivate extension ChatRoomViewController {
     
-    func setupNetworkCommunication() {
-        do {
-            try self.chatRoom.setupNetworkCommunication()
-        }
-        catch ChatRoom.ChatRoomError.General(let reason) {
-            Logger.error.message(reason)
-        }
-        catch {
-            Logger.error.message("Error: ").object(error.localizedDescription)
-        }
+    func setupNetworkCommunication() throws {
+        try self.chatRoom.setupNetworkCommunication()
+    }
+    
+    func joinChat(with username: String) throws {
+        try self.chatRoom.joinChat(with: username)
     }
 }
 

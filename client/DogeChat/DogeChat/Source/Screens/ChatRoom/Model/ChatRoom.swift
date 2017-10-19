@@ -95,6 +95,27 @@ extension ChatRoom {
     }
 }
 
+// MARK: - Joining a chat
+extension ChatRoom {
+    
+    func joinChat(with username: String) throws {
+        // constructing the message for chatroom protocol
+        guard let valid_data: Data = "iam:\(username)".data(using: .ascii) else {
+            let errorMessage: String = "Unable to construct \(String(describing: Data.self)) object!"
+            Logger.error.message(errorMessage)
+            throw ChatRoom.ChatRoomError.General(reason: errorMessage)
+        }
+        
+        // save username for next messages that will gonna be passed
+        self.username = username
+        
+        // write message to `outputStream`
+        _ = valid_data.withUnsafeBytes({ (pointer: UnsafePointer<UInt8>) -> Void in
+            self.outputStream.write(pointer, maxLength: valid_data.count)
+        })
+    }
+}
+
 // MARK: - Errors
 extension ChatRoom {
     
