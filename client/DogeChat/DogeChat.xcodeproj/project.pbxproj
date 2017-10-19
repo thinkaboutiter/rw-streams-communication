@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4FDAF9751F98ADD10065F437 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAF9741F98ADD10065F437 /* TextField.swift */; };
+		4FDAF9851F98C1DD0065F437 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAF9841F98C1DD0065F437 /* ChatRoom.swift */; };
 		5960E4E6E36019549433F4CC /* Pods_DogeChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212A006E15364ACDE04B0262 /* Pods_DogeChat.framework */; };
 		AE28D6E51EC0AB9800E886B9 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE28D6E41EC0AB9800E886B9 /* StringExtension.swift */; };
 		AE909BEB1EB54099009D9D95 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		212A006E15364ACDE04B0262 /* Pods_DogeChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DogeChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDAF9741F98ADD10065F437 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		4FDAF9841F98C1DD0065F437 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		6FD099D9741B9D64C5F21A1B /* Pods-DogeChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogeChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogeChat/Pods-DogeChat.debug.xcconfig"; sourceTree = "<group>"; };
 		AE28D6E41EC0AB9800E886B9 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		4FDAF97A1F98B3830065F437 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4FDAF9841F98C1DD0065F437 /* ChatRoom.swift */,
 				AE909BEC1EB54B13009D9D95 /* Message.swift */,
 			);
 			path = Model;
@@ -347,6 +350,7 @@
 				AE909BED1EB54B13009D9D95 /* Message.swift in Sources */,
 				AE28D6E51EC0AB9800E886B9 /* StringExtension.swift in Sources */,
 				AEC6BF3F1EAF320E007CA6E5 /* AppDelegate.swift in Sources */,
+				4FDAF9851F98C1DD0065F437 /* ChatRoom.swift in Sources */,
 				AEC6BF511EAF345A007CA6E5 /* ChatRoomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
