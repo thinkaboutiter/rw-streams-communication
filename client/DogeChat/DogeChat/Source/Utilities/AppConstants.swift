@@ -19,6 +19,11 @@ struct AppConstants {
      }
      */
     
+    struct ServerDetails {
+        static let host: CFString = "localhost" as CFString
+        static let port: UInt32 = 80
+    }
+    
     // MARK: - Error messages
     struct ErrorMessage {
         static let generic: String = NSLocalizedString("Something went wrong!", comment: AppConstants.LocalizedStringComment.errorMessage)
