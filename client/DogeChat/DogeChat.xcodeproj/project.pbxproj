@@ -64,27 +64,58 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AE909BF21EB6C34B009D9D95 /* Other Stuff */ = {
+		4FDAF9771F98AE6A0065F437 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				AEC6BF3E1EAF320E007CA6E5 /* AppDelegate.swift */,
-				AEC6BF401EAF320E007CA6E5 /* JoinChatViewController.swift */,
-				AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */,
-				AE909BF01EB63FDB009D9D95 /* MessageInputView.swift */,
-				AE909BEE1EB54C4B009D9D95 /* Label.swift */,
-				AE909BEC1EB54B13009D9D95 /* Message.swift */,
-				AEA5A17A1EC3641C0041C7B4 /* Extensions */,
-				4FDAF9741F98ADD10065F437 /* TextField.swift */,
+				AEC6BF471EAF320E007CA6E5 /* LaunchScreen.storyboard */,
+				AEC6BF4A1EAF320E007CA6E5 /* Info.plist */,
 			);
-			name = "Other Stuff";
+			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		AEA5A17A1EC3641C0041C7B4 /* Extensions */ = {
+		4FDAF9781F98B34C0065F437 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AEC6BF501EAF345A007CA6E5 /* ChatRoomViewController.swift */,
+				AEC6BF401EAF320E007CA6E5 /* JoinChatViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4FDAF9791F98B3660065F437 /* UIClasses */ = {
+			isa = PBXGroup;
+			children = (
+				AE909BEE1EB54C4B009D9D95 /* Label.swift */,
+				AE909BF01EB63FDB009D9D95 /* MessageInputView.swift */,
+				AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */,
+				4FDAF9741F98ADD10065F437 /* TextField.swift */,
+			);
+			path = UIClasses;
+			sourceTree = "<group>";
+		};
+		4FDAF97A1F98B3830065F437 /* DataObjects */ = {
+			isa = PBXGroup;
+			children = (
+				AE909BEC1EB54B13009D9D95 /* Message.swift */,
+			);
+			path = DataObjects;
+			sourceTree = "<group>";
+		};
+		4FDAF97C1F98B3F50065F437 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				AE28D6E41EC0AB9800E886B9 /* StringExtension.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4FDAF97D1F98B40B0065F437 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AEFEAA4F1EAF37BC00889E76 /* Inconsolata-Bold.ttf */,
+				AEFEAA501EAF37BC00889E76 /* Inconsolata-Regular.ttf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		AEC6BF321EAF320E007CA6E5 = {
@@ -108,13 +139,14 @@
 		AEC6BF3D1EAF320E007CA6E5 /* DogeChat */ = {
 			isa = PBXGroup;
 			children = (
-				AEC6BF501EAF345A007CA6E5 /* ChatRoomViewController.swift */,
-				AE909BF21EB6C34B009D9D95 /* Other Stuff */,
+				AEC6BF3E1EAF320E007CA6E5 /* AppDelegate.swift */,
 				AEC6BF451EAF320E007CA6E5 /* Assets.xcassets */,
-				AEC6BF471EAF320E007CA6E5 /* LaunchScreen.storyboard */,
-				AEC6BF4A1EAF320E007CA6E5 /* Info.plist */,
-				AEFEAA4F1EAF37BC00889E76 /* Inconsolata-Bold.ttf */,
-				AEFEAA501EAF37BC00889E76 /* Inconsolata-Regular.ttf */,
+				4FDAF97A1F98B3830065F437 /* DataObjects */,
+				4FDAF97C1F98B3F50065F437 /* Extensions */,
+				4FDAF97D1F98B40B0065F437 /* Resources */,
+				4FDAF9771F98AE6A0065F437 /* SupportingFiles */,
+				4FDAF9791F98B3660065F437 /* UIClasses */,
+				4FDAF9781F98B34C0065F437 /* ViewControllers */,
 			);
 			path = DogeChat;
 			sourceTree = "<group>";
