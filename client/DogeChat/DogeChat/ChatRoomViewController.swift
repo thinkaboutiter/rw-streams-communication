@@ -31,28 +31,28 @@
 import UIKit
 
 class ChatRoomViewController: UIViewController {
-  let tableView = UITableView()
-  let messageInputBar = MessageInputView()
-  
-  var messages = [Message]()
-  
-  var username = ""
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+    let tableView = UITableView()
+    let messageInputBar = MessageInputView()
     
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-
-  }
+    var messages = [Message]()
+    
+    var username = ""
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+    }
 }
 
 //MARK - Message Input Bar
 extension ChatRoomViewController: MessageInputDelegate {
-  func sendWasTapped(message: String) {
-    
-  }
+    func sendWasTapped(message: String) {
+        
+    }
 }
 
