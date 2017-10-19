@@ -63,6 +63,8 @@ class ChatRoomViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        self.chatRoom.stopChatSession()
     }
     
     override func viewDidLayoutSubviews() {

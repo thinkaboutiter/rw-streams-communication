@@ -109,7 +109,7 @@ extension ChatRoom {
     }
 }
 
-// MARK: - Joining a chat
+// MARK: - Session
 extension ChatRoom {
     
     func joinChat(with username: String) throws {
@@ -128,10 +128,6 @@ extension ChatRoom {
             self.outputStream.write(pointer, maxLength: valid_data.count)
         })
     }
-}
-
-// MARK: - Writing a message
-extension ChatRoom {
     
     func sendMessage(message: String) throws {
         guard let valid_data: Data = "msg:\(message)".data(using: .ascii) else {
@@ -143,6 +139,11 @@ extension ChatRoom {
         _ = valid_data.withUnsafeBytes({ (pointer: UnsafePointer<UInt8>) -> Void in
             self.outputStream.write(pointer, maxLength: valid_data.count)
         })
+    }
+    
+    func stopChatSession() {
+        self.inputStream.close()
+        self.outputStream.close()
     }
 }
 
@@ -164,6 +165,8 @@ extension ChatRoom: StreamDelegate {
             
         case Stream.Event.endEncountered:
             Logger.network.message("endEncountered")
+            
+            self.stopChatSession()
             
         case Stream.Event.errorOccurred:
             Logger.network.message("errorOccurred")
