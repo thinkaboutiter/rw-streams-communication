@@ -35,10 +35,17 @@ protocol MessageInputDelegate {
 }
 
 class MessageInputView: UIView {
+    
+    // MARK: - Properties
     var delegate: MessageInputDelegate?
     
     let textView = UITextView()
     let sendButton = UIButton()
+    
+    // MARK: - Initializations
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,17 +66,7 @@ class MessageInputView: UIView {
         addSubview(sendButton)
     }
     
-    @objc func sendTapped() {
-        if let delegate = delegate, let message = textView.text {
-            delegate.sendWasTapped(message:  message)
-            textView.text = ""
-        }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    // MARK: - Life cycle
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -81,6 +78,14 @@ class MessageInputView: UIView {
         sendButton.center = CGPoint(x: bounds.size.width - 30 - 16, y: bounds.size.height/2.0)
         
     }
+    
+    // MARK: - Actions
+    @objc func sendTapped() {
+        if let delegate = delegate, let message = textView.text {
+            delegate.sendWasTapped(message:  message)
+            textView.text = ""
+        }
+    }    
 }
 
 extension MessageInputView: UITextViewDelegate {

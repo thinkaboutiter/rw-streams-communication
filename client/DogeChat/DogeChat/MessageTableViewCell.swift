@@ -36,15 +36,16 @@ enum MessageSender {
 }
 
 class MessageTableViewCell: UITableViewCell {
+    
+    // MARK: - Properties
     var messageSender: MessageSender = .ourself
     let messageLabel = Label()
     let nameLabel = UILabel()
     
-    func apply(message: Message) {
-        nameLabel.text = message.senderUsername
-        messageLabel.text = message.message
-        messageSender = message.messageSender
-        setNeedsLayout()
+    
+    // MARK: - Initializations
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -62,6 +63,15 @@ class MessageTableViewCell: UITableViewCell {
         addSubview(nameLabel)
     }
     
+    // MARK: - Configurations
+    func apply(message: Message) {
+        nameLabel.text = message.senderUsername
+        messageLabel.text = message.message
+        messageSender = message.messageSender
+        setNeedsLayout()
+    }
+
+    // MARK: - Dimensions
     class func height(for message: Message) -> CGFloat {
         let maxSize = CGSize(width: 2*(UIScreen.main.bounds.size.width/3), height: CGFloat.greatestFiniteMagnitude)
         let nameHeight = message.messageSender == .ourself ? 0 : (height(forText: message.senderUsername, fontSize: 10, maxSize: maxSize) + 4 )
@@ -79,7 +89,5 @@ class MessageTableViewCell: UITableViewCell {
         return textHeight
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
 }
