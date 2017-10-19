@@ -111,6 +111,21 @@ fileprivate extension ChatRoomViewController {
         
         self.messageInputBar.delegate = self
     }
+    
+    fileprivate func configure(_ chatRoom: ChatRoom, with username: String) {
+        chatRoom.update_messagesDelegate(self)
+        
+        do {
+            try self.setupNetworkCommunication(for: chatRoom)
+            try self.join(chatRoom, with: username)
+        }
+        catch ChatRoom.ChatRoomError.General(let reason) {
+            Logger.error.message(reason)
+        }
+        catch {
+            Logger.error.message("Error: ").object(error.localizedDescription)
+        }
+    }
 }
 
 // MARK - Message Input Bar
@@ -176,7 +191,13 @@ fileprivate extension ChatRoomViewController {
     func join(_ chatRoom: ChatRoom, with username: String) throws {
         try chatRoom.joinChat(with: username)
     }
+}
+
+// MARK: - ChatRoomDelegate
+extension ChatRoomViewController: ChatRoomDelegate {
     
+    func receivedMessage(message: Message) {
+        self.insertNewMessageCell(message)
     }
 }
 

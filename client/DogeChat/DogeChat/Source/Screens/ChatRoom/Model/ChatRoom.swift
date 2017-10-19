@@ -9,6 +9,10 @@
 import UIKit
 import SimpleLogger
 
+protocol ChatRoomDelegate: class {
+    func receivedMessage(message: Message)
+}
+
 class ChatRoom: NSObject {
 
     // MARK: - Properties
@@ -16,6 +20,11 @@ class ChatRoom: NSObject {
     var outputStream: OutputStream!
     var username: String = ""
     private let maxReadLength: Int = 4096
+    
+    private(set) weak var messagesDelegate: ChatRoomDelegate?
+    func update_messagesDelegate(_ newValue: ChatRoomDelegate?) {
+        self.messagesDelegate = newValue
+    }
     
     // MARK: - Initialization
     override init() {
@@ -177,8 +186,7 @@ extension ChatRoom {
             
             // construct the Message object (if possible)
             if let valid_message: Message = self.processedMessage(from: buffer, length: numberOfBytesRead) {
-                
-                // notify subscribers (delegates)
+                self.messagesDelegate?.receivedMessage(message: valid_message)
             }
         }
     }
