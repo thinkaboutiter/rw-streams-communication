@@ -73,32 +73,30 @@
 			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		4FDAF9781F98B34C0065F437 /* ViewControllers */ = {
+		4FDAF9781F98B34C0065F437 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				AEC6BF501EAF345A007CA6E5 /* ChatRoomViewController.swift */,
-				AEC6BF401EAF320E007CA6E5 /* JoinChatViewController.swift */,
 			);
-			path = ViewControllers;
+			path = View;
 			sourceTree = "<group>";
 		};
-		4FDAF9791F98B3660065F437 /* UIClasses */ = {
+		4FDAF9791F98B3660065F437 /* _customUI */ = {
 			isa = PBXGroup;
 			children = (
 				AE909BEE1EB54C4B009D9D95 /* Label.swift */,
 				AE909BF01EB63FDB009D9D95 /* MessageInputView.swift */,
 				AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */,
-				4FDAF9741F98ADD10065F437 /* TextField.swift */,
 			);
-			path = UIClasses;
+			path = _customUI;
 			sourceTree = "<group>";
 		};
-		4FDAF97A1F98B3830065F437 /* DataObjects */ = {
+		4FDAF97A1F98B3830065F437 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				AE909BEC1EB54B13009D9D95 /* Message.swift */,
 			);
-			path = DataObjects;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4FDAF97C1F98B3F50065F437 /* Extensions */ = {
@@ -116,6 +114,59 @@
 				AEFEAA501EAF37BC00889E76 /* Inconsolata-Regular.ttf */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4FDAF97E1F98B5980065F437 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				4FDAF97F1F98B62A0065F437 /* Screens */,
+				4FDAF97C1F98B3F50065F437 /* Extensions */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		4FDAF97F1F98B62A0065F437 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				4FDAF9811F98B6450065F437 /* ChatRoom */,
+				4FDAF9801F98B63D0065F437 /* JoinChat */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		4FDAF9801F98B63D0065F437 /* JoinChat */ = {
+			isa = PBXGroup;
+			children = (
+				4FDAF9831F98B6640065F437 /* _customUI */,
+				4FDAF9821F98B65D0065F437 /* View */,
+			);
+			path = JoinChat;
+			sourceTree = "<group>";
+		};
+		4FDAF9811F98B6450065F437 /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				4FDAF9791F98B3660065F437 /* _customUI */,
+				4FDAF97A1F98B3830065F437 /* Model */,
+				4FDAF9781F98B34C0065F437 /* View */,
+			);
+			path = ChatRoom;
+			sourceTree = "<group>";
+		};
+		4FDAF9821F98B65D0065F437 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AEC6BF401EAF320E007CA6E5 /* JoinChatViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4FDAF9831F98B6640065F437 /* _customUI */ = {
+			isa = PBXGroup;
+			children = (
+				4FDAF9741F98ADD10065F437 /* TextField.swift */,
+			);
+			path = _customUI;
 			sourceTree = "<group>";
 		};
 		AEC6BF321EAF320E007CA6E5 = {
@@ -141,12 +192,9 @@
 			children = (
 				AEC6BF3E1EAF320E007CA6E5 /* AppDelegate.swift */,
 				AEC6BF451EAF320E007CA6E5 /* Assets.xcassets */,
-				4FDAF97A1F98B3830065F437 /* DataObjects */,
-				4FDAF97C1F98B3F50065F437 /* Extensions */,
 				4FDAF97D1F98B40B0065F437 /* Resources */,
+				4FDAF97E1F98B5980065F437 /* Source */,
 				4FDAF9771F98AE6A0065F437 /* SupportingFiles */,
-				4FDAF9791F98B3660065F437 /* UIClasses */,
-				4FDAF9781F98B34C0065F437 /* ViewControllers */,
 			);
 			path = DogeChat;
 			sourceTree = "<group>";
