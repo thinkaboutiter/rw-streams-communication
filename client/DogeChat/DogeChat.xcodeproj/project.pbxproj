@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FDAF9751F98ADD10065F437 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAF9741F98ADD10065F437 /* TextField.swift */; };
 		5960E4E6E36019549433F4CC /* Pods_DogeChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212A006E15364ACDE04B0262 /* Pods_DogeChat.framework */; };
 		AE28D6E51EC0AB9800E886B9 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE28D6E41EC0AB9800E886B9 /* StringExtension.swift */; };
 		AE909BEB1EB54099009D9D95 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */; };
 		AE909BED1EB54B13009D9D95 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE909BEC1EB54B13009D9D95 /* Message.swift */; };
 		AE909BEF1EB54C4B009D9D95 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE909BEE1EB54C4B009D9D95 /* Label.swift */; };
 		AE909BF11EB63FDB009D9D95 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE909BF01EB63FDB009D9D95 /* MessageInputView.swift */; };
-		AEA5A1771EC3618C0041C7B4 /* Layouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA5A1761EC3618C0041C7B4 /* Layouts.swift */; };
-		AEA5A1791EC362150041C7B4 /* ChatRoomViewController+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA5A1781EC362150041C7B4 /* ChatRoomViewController+Table.swift */; };
 		AEC6BF3F1EAF320E007CA6E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC6BF3E1EAF320E007CA6E5 /* AppDelegate.swift */; };
 		AEC6BF411EAF320E007CA6E5 /* JoinChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC6BF401EAF320E007CA6E5 /* JoinChatViewController.swift */; };
 		AEC6BF461EAF320E007CA6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEC6BF451EAF320E007CA6E5 /* Assets.xcassets */; };
@@ -26,14 +25,13 @@
 
 /* Begin PBXFileReference section */
 		212A006E15364ACDE04B0262 /* Pods_DogeChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DogeChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FDAF9741F98ADD10065F437 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		6FD099D9741B9D64C5F21A1B /* Pods-DogeChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogeChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogeChat/Pods-DogeChat.debug.xcconfig"; sourceTree = "<group>"; };
 		AE28D6E41EC0AB9800E886B9 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		AE909BEC1EB54B13009D9D95 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AE909BEE1EB54C4B009D9D95 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		AE909BF01EB63FDB009D9D95 /* MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
-		AEA5A1761EC3618C0041C7B4 /* Layouts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layouts.swift; sourceTree = "<group>"; };
-		AEA5A1781EC362150041C7B4 /* ChatRoomViewController+Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatRoomViewController+Table.swift"; sourceTree = "<group>"; };
 		AEC6BF3B1EAF320E007CA6E5 /* DogeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEC6BF3E1EAF320E007CA6E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEC6BF401EAF320E007CA6E5 /* JoinChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinChatViewController.swift; sourceTree = "<group>"; };
@@ -66,28 +64,58 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AE909BF21EB6C34B009D9D95 /* Other Stuff */ = {
+		4FDAF9771F98AE6A0065F437 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				AEC6BF3E1EAF320E007CA6E5 /* AppDelegate.swift */,
-				AEC6BF401EAF320E007CA6E5 /* JoinChatViewController.swift */,
-				AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */,
-				AE909BF01EB63FDB009D9D95 /* MessageInputView.swift */,
-				AE909BEE1EB54C4B009D9D95 /* Label.swift */,
-				AE909BEC1EB54B13009D9D95 /* Message.swift */,
-				AEA5A17A1EC3641C0041C7B4 /* Extensions */,
+				AEC6BF471EAF320E007CA6E5 /* LaunchScreen.storyboard */,
+				AEC6BF4A1EAF320E007CA6E5 /* Info.plist */,
 			);
-			name = "Other Stuff";
+			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		AEA5A17A1EC3641C0041C7B4 /* Extensions */ = {
+		4FDAF9781F98B34C0065F437 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AEC6BF501EAF345A007CA6E5 /* ChatRoomViewController.swift */,
+				AEC6BF401EAF320E007CA6E5 /* JoinChatViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4FDAF9791F98B3660065F437 /* UIClasses */ = {
+			isa = PBXGroup;
+			children = (
+				AE909BEE1EB54C4B009D9D95 /* Label.swift */,
+				AE909BF01EB63FDB009D9D95 /* MessageInputView.swift */,
+				AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */,
+				4FDAF9741F98ADD10065F437 /* TextField.swift */,
+			);
+			path = UIClasses;
+			sourceTree = "<group>";
+		};
+		4FDAF97A1F98B3830065F437 /* DataObjects */ = {
+			isa = PBXGroup;
+			children = (
+				AE909BEC1EB54B13009D9D95 /* Message.swift */,
+			);
+			path = DataObjects;
+			sourceTree = "<group>";
+		};
+		4FDAF97C1F98B3F50065F437 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				AE28D6E41EC0AB9800E886B9 /* StringExtension.swift */,
-				AEA5A1781EC362150041C7B4 /* ChatRoomViewController+Table.swift */,
-				AEA5A1761EC3618C0041C7B4 /* Layouts.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4FDAF97D1F98B40B0065F437 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AEFEAA4F1EAF37BC00889E76 /* Inconsolata-Bold.ttf */,
+				AEFEAA501EAF37BC00889E76 /* Inconsolata-Regular.ttf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		AEC6BF321EAF320E007CA6E5 = {
@@ -111,13 +139,14 @@
 		AEC6BF3D1EAF320E007CA6E5 /* DogeChat */ = {
 			isa = PBXGroup;
 			children = (
-				AEC6BF501EAF345A007CA6E5 /* ChatRoomViewController.swift */,
-				AE909BF21EB6C34B009D9D95 /* Other Stuff */,
+				AEC6BF3E1EAF320E007CA6E5 /* AppDelegate.swift */,
 				AEC6BF451EAF320E007CA6E5 /* Assets.xcassets */,
-				AEC6BF471EAF320E007CA6E5 /* LaunchScreen.storyboard */,
-				AEC6BF4A1EAF320E007CA6E5 /* Info.plist */,
-				AEFEAA4F1EAF37BC00889E76 /* Inconsolata-Bold.ttf */,
-				AEFEAA501EAF37BC00889E76 /* Inconsolata-Regular.ttf */,
+				4FDAF97A1F98B3830065F437 /* DataObjects */,
+				4FDAF97C1F98B3F50065F437 /* Extensions */,
+				4FDAF97D1F98B40B0065F437 /* Resources */,
+				4FDAF9771F98AE6A0065F437 /* SupportingFiles */,
+				4FDAF9791F98B3660065F437 /* UIClasses */,
+				4FDAF9781F98B34C0065F437 /* ViewControllers */,
 			);
 			path = DogeChat;
 			sourceTree = "<group>";
@@ -263,15 +292,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEC6BF411EAF320E007CA6E5 /* JoinChatViewController.swift in Sources */,
+				4FDAF9751F98ADD10065F437 /* TextField.swift in Sources */,
 				AE909BF11EB63FDB009D9D95 /* MessageInputView.swift in Sources */,
 				AE909BEB1EB54099009D9D95 /* MessageTableViewCell.swift in Sources */,
 				AE909BEF1EB54C4B009D9D95 /* Label.swift in Sources */,
 				AE909BED1EB54B13009D9D95 /* Message.swift in Sources */,
 				AE28D6E51EC0AB9800E886B9 /* StringExtension.swift in Sources */,
 				AEC6BF3F1EAF320E007CA6E5 /* AppDelegate.swift in Sources */,
-				AEA5A1771EC3618C0041C7B4 /* Layouts.swift in Sources */,
 				AEC6BF511EAF345A007CA6E5 /* ChatRoomViewController.swift in Sources */,
-				AEA5A1791EC362150041C7B4 /* ChatRoomViewController+Table.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
