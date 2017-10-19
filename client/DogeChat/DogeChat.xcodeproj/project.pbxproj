@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FDAF9751F98ADD10065F437 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAF9741F98ADD10065F437 /* TextField.swift */; };
 		5960E4E6E36019549433F4CC /* Pods_DogeChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212A006E15364ACDE04B0262 /* Pods_DogeChat.framework */; };
 		AE28D6E51EC0AB9800E886B9 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE28D6E41EC0AB9800E886B9 /* StringExtension.swift */; };
 		AE909BEB1EB54099009D9D95 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		212A006E15364ACDE04B0262 /* Pods_DogeChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DogeChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FDAF9741F98ADD10065F437 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		6FD099D9741B9D64C5F21A1B /* Pods-DogeChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogeChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogeChat/Pods-DogeChat.debug.xcconfig"; sourceTree = "<group>"; };
 		AE28D6E41EC0AB9800E886B9 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				AE909BEE1EB54C4B009D9D95 /* Label.swift */,
 				AE909BEC1EB54B13009D9D95 /* Message.swift */,
 				AEA5A17A1EC3641C0041C7B4 /* Extensions */,
+				4FDAF9741F98ADD10065F437 /* TextField.swift */,
 			);
 			name = "Other Stuff";
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEC6BF411EAF320E007CA6E5 /* JoinChatViewController.swift in Sources */,
+				4FDAF9751F98ADD10065F437 /* TextField.swift in Sources */,
 				AE909BF11EB63FDB009D9D95 /* MessageInputView.swift in Sources */,
 				AE909BEB1EB54099009D9D95 /* MessageTableViewCell.swift in Sources */,
 				AE909BEF1EB54C4B009D9D95 /* Label.swift in Sources */,
