@@ -31,13 +31,14 @@
 import UIKit
 
 class ChatRoomViewController: UIViewController {
+    
+    // MARK: - Properties
     let tableView = UITableView()
     let messageInputBar = MessageInputView()
-    
     var messages = [Message]()
-    
     var username = ""
     
+    // MARK: - Life cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -49,7 +50,7 @@ class ChatRoomViewController: UIViewController {
     }
 }
 
-//MARK - Message Input Bar
+// MARK - Message Input Bar
 extension ChatRoomViewController: MessageInputDelegate {
     func sendWasTapped(message: String) {
         
