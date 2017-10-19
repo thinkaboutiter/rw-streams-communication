@@ -29,6 +29,7 @@
  */
 
 import UIKit
+import SimpleLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,8 +42,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = UINavigationController(rootViewController: JoinChatViewController())
         self.window?.makeKeyAndVisible()
+        
+        self.configure_3rdParties()
+        
         return true
     }
     
+}
+
+// MARK: - Configurations
+fileprivate extension AppDelegate {
+    
+    func configure_3rdParties() {
+        self.configure_simpleLogger()
+    }
+    
+    func configure_simpleLogger() {
+        #if DEBUG
+            Logger.enableLogging(true)
+        #endif
+    }
 }
 

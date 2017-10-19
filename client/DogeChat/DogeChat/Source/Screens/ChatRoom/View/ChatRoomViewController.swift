@@ -29,6 +29,7 @@
  */
 
 import UIKit
+import SimpleLogger
 
 class ChatRoomViewController: UIViewController {
     
@@ -37,6 +38,7 @@ class ChatRoomViewController: UIViewController {
     let messageInputBar = MessageInputView()
     var messages = [Message]()
     var username = ""
+    let chatRoom: ChatRoom = ChatRoom()
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -52,6 +54,7 @@ class ChatRoomViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.setupNetworkCommunication()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,7 +72,7 @@ class ChatRoomViewController: UIViewController {
 }
 
 // MARK: - Notifications
-extension ChatRoomViewController {
+fileprivate extension ChatRoomViewController {
     
     @objc func keyboardWillChange(notification: NSNotification) {
         if let userInfo = notification.userInfo {
@@ -87,7 +90,7 @@ extension ChatRoomViewController {
 }
 
 // MARK: - UI configurations
-extension ChatRoomViewController {
+fileprivate extension ChatRoomViewController {
     
     func loadViews() {
         self.navigationItem.title = "Let's Chat!"
@@ -145,9 +148,9 @@ extension ChatRoomViewController: UITableViewDelegate {
 }
 
 // MARK: - Messages
-extension ChatRoomViewController {
+fileprivate extension ChatRoomViewController {
     
-    fileprivate func insertNewMessageCell(_ message: Message) {
+    func insertNewMessageCell(_ message: Message) {
         self.messages.append(message)
         
         let indexPath = IndexPath(row: messages.count - 1, section: 0)
@@ -156,6 +159,22 @@ extension ChatRoomViewController {
         self.tableView.insertRows(at: [indexPath], with: .bottom)
         self.tableView.endUpdates()
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+}
+
+// MARK: - Networking
+fileprivate extension ChatRoomViewController {
+    
+    func setupNetworkCommunication() {
+        do {
+            try self.chatRoom.setupNetworkCommunication()
+        }
+        catch ChatRoom.ChatRoomError.General(let reason) {
+            Logger.error.message(reason)
+        }
+        catch {
+            Logger.error.message("Error: ").object(error.localizedDescription)
+        }
     }
 }
 
