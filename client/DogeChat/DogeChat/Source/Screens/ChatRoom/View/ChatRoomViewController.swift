@@ -37,6 +37,7 @@ class ChatRoomViewController: UIViewController {
     let messageInputBar = MessageInputView()
     var messages = [Message]()
     var username = ""
+    let chatRoom: ChatRoom = ChatRoom()
     
     // MARK: - Life cycle
     override func viewDidLoad() {
