@@ -54,11 +54,17 @@ class ChatRoomViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.setupNetworkCommunication()
+        self.configure(self.chatRoom, with: self.username)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        self.chatRoom.stopChatSession()
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,7 +95,7 @@ fileprivate extension ChatRoomViewController {
     }
 }
 
-// MARK: - UI configurations
+// MARK: -  Configurations
 fileprivate extension ChatRoomViewController {
     
     func loadViews() {
@@ -107,12 +113,35 @@ fileprivate extension ChatRoomViewController {
         
         self.messageInputBar.delegate = self
     }
+    
+    fileprivate func configure(_ chatRoom: ChatRoom, with username: String) {
+        chatRoom.update_messagesDelegate(self)
+        
+        do {
+            try self.setupNetworkCommunication(for: chatRoom)
+            try self.join(chatRoom, with: username)
+        }
+        catch ChatRoom.ChatRoomError.General(let reason) {
+            Logger.error.message(reason)
+        }
+        catch {
+            Logger.error.message("Error: ").object(error.localizedDescription)
+        }
+    }
 }
 
-// MARK - Message Input Bar
+// MARK: - Message Input Bar
 extension ChatRoomViewController: MessageInputDelegate {
     func sendWasTapped(message: String) {
-        
+        do {
+            try self.chatRoom.sendMessage(message: message)
+        }
+        catch ChatRoom.ChatRoomError.General(let reason) {
+            Logger.error.message(reason)
+        }
+        catch {
+            Logger.error.message("Error: ").object(error.localizedDescription)
+        }
     }
 }
 
@@ -165,16 +194,20 @@ fileprivate extension ChatRoomViewController {
 // MARK: - Networking
 fileprivate extension ChatRoomViewController {
     
-    func setupNetworkCommunication() {
-        do {
-            try self.chatRoom.setupNetworkCommunication()
-        }
-        catch ChatRoom.ChatRoomError.General(let reason) {
-            Logger.error.message(reason)
-        }
-        catch {
-            Logger.error.message("Error: ").object(error.localizedDescription)
-        }
+    func setupNetworkCommunication(for chatRoom: ChatRoom) throws {
+        try chatRoom.setupNetworkCommunication()
+    }
+    
+    func join(_ chatRoom: ChatRoom, with username: String) throws {
+        try chatRoom.joinChat(with: username)
+    }
+}
+
+// MARK: - ChatRoomDelegate
+extension ChatRoomViewController: ChatRoomDelegate {
+    
+    func receivedMessage(message: Message) {
+        self.insertNewMessageCell(message)
     }
 }
 
