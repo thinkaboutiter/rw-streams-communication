@@ -50,34 +50,101 @@ class MessageTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        messageLabel.clipsToBounds = true
-        messageLabel.textColor = .white
-        messageLabel.numberOfLines = 0
+        self.messageLabel.clipsToBounds = true
+        self.messageLabel.textColor = .white
+        self.messageLabel.numberOfLines = 0
         
-        nameLabel.textColor = .lightGray
-        nameLabel.font = UIFont(name: "Helvetica", size: 10) //UIFont.systemFont(ofSize: 10)
+        self.nameLabel.textColor = .lightGray
+        self.nameLabel.font = UIFont(name: "Helvetica", size: 10) //UIFont.systemFont(ofSize: 10)
         
-        clipsToBounds = true
+        self.clipsToBounds = true
         
-        addSubview(messageLabel)
-        addSubview(nameLabel)
+        self.addSubview(self.messageLabel)
+        self.addSubview(self.nameLabel)
     }
     
-    // MARK: - Configurations
-    func apply(message: Message) {
-        nameLabel.text = message.senderUsername
-        messageLabel.text = message.message
-        messageSender = message.messageSender
-        setNeedsLayout()
+    // MARK: - Life cycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if self.isJoinMessage() {
+            self.layoutForJoinMessage()
+        }
+        else {
+            self.messageLabel.font = UIFont(name: "Helvetica", size: 17) //UIFont.systemFont(ofSize: 17)
+            self.messageLabel.textColor = .white
+            
+            let size = self.messageLabel.sizeThatFits(CGSize(width: 2*(bounds.size.width/3), height: CGFloat.greatestFiniteMagnitude))
+            self.messageLabel.frame = CGRect(x: 0, y: 0, width: size.width + 32, height: size.height + 16)
+            
+            if self.messageSender == .ourself {
+                self.nameLabel.isHidden = true
+                
+                self.messageLabel.center = CGPoint(x: bounds.size.width - self.messageLabel.bounds.size.width/2.0 - 16,
+                                              y: bounds.size.height/2.0)
+                self.messageLabel.backgroundColor = UIColor(red: 24/255, green: 180/255, blue: 128/255, alpha: 1.0)
+            }
+            else {
+                self.nameLabel.isHidden = false
+                self.nameLabel.sizeToFit()
+                self.nameLabel.center = CGPoint(x: self.nameLabel.bounds.size.width/2.0 + 16 + 4,
+                                                y: self.nameLabel.bounds.size.height/2.0 + 4)
+                
+                self.messageLabel.center = CGPoint(x: self.messageLabel.bounds.size.width/2.0 + 16,
+                                                   y: self.messageLabel.bounds.size.height/2.0 + self.nameLabel.bounds.size.height + 8)
+                self.messageLabel.backgroundColor = .lightGray
+            }
+        }
+        
+        self.messageLabel.layer.cornerRadius = min(self.messageLabel.bounds.size.height/2.0, 20)
     }
+}
 
+// MARK: - Messages
+extension MessageTableViewCell {
+    
+    func apply(message: Message) {
+        self.nameLabel.text = message.senderUsername
+        self.messageLabel.text = message.message
+        self.messageSender = message.messageSender
+        self.setNeedsLayout()
+    }
+    
+    func layoutForJoinMessage() {
+        self.messageLabel.font = UIFont.systemFont(ofSize: 10)
+        self.messageLabel.textColor = .lightGray
+        self.messageLabel.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        
+        let size = self.messageLabel.sizeThatFits(CGSize(width: 2*(self.bounds.size.width/3),
+                                                         height: CGFloat.greatestFiniteMagnitude))
+        self.messageLabel.frame = CGRect(x: 0, y: 0, width: size.width + 32, height: size.height + 16)
+        self.messageLabel.center = CGPoint(x: self.bounds.size.width/2,
+                                           y: self.bounds.size.height/2.0)
+    }
+    
+    func isJoinMessage() -> Bool {
+        if let words = self.messageLabel.text?.components(separatedBy: " ") {
+            if words.count >= 2 && words[words.count - 2] == "has" && words[words.count - 1] == "joined" {
+                return true
+            }
+        }
+        return false
+    }
+}
+
+// MARK: - Dimensions
+extension MessageTableViewCell {
+    
     // MARK: - Dimensions
     class func height(for message: Message) -> CGFloat {
-        let maxSize = CGSize(width: 2*(UIScreen.main.bounds.size.width/3), height: CGFloat.greatestFiniteMagnitude)
-        let nameHeight = message.messageSender == .ourself ? 0 : (height(forText: message.senderUsername, fontSize: 10, maxSize: maxSize) + 4 )
-        let messageHeight = height(forText: message.message, fontSize: 17, maxSize: maxSize)
-        
-        return nameHeight + messageHeight + 32 + 16
+        let maxSize: CGSize = CGSize(width: 2*(UIScreen.main.bounds.size.width/3),
+                                     height: CGFloat.greatestFiniteMagnitude)
+        let nameHeight: CGFloat = message.messageSender == .ourself ? 0 : (MessageTableViewCell.height(forText: message.senderUsername,
+                                                                                                       fontSize: 10,
+                                                                                                       maxSize: maxSize) + 4 )
+        let messageHeight: CGFloat = MessageTableViewCell.height(forText: message.message, fontSize: 17, maxSize: maxSize)
+        let result: CGFloat = nameHeight + messageHeight + 32 + 16
+        return result
     }
     
     private class func height(forText text: String, fontSize: CGFloat, maxSize: CGSize) -> CGFloat {
@@ -88,6 +155,6 @@ class MessageTableViewCell: UITableViewCell {
         
         return textHeight
     }
-    
-    
 }
+
+

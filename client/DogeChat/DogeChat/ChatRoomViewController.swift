@@ -39,6 +39,16 @@ class ChatRoomViewController: UIViewController {
     var username = ""
     
     // MARK: - Life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillChange(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        
+        self.loadViews()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -46,7 +56,53 @@ class ChatRoomViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let messageBarHeight:CGFloat = 60.0
+        let size = self.view.bounds.size
         
+        self.tableView.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height - messageBarHeight)
+        self.messageInputBar.frame = CGRect(x: 0, y: size.height - messageBarHeight, width: size.width, height: messageBarHeight)
+    }
+}
+
+// MARK: - Notifications
+extension ChatRoomViewController {
+    
+    @objc func keyboardWillChange(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)!.cgRectValue
+            let messageBarHeight = self.messageInputBar.bounds.size.height
+            let point = CGPoint(x: self.messageInputBar.center.x,
+                                y: endFrame.origin.y - messageBarHeight/2.0)
+            let inset = UIEdgeInsets(top: 0, left: 0, bottom: endFrame.size.height, right: 0)
+            UIView.animate(withDuration: 0.25) {
+                self.messageInputBar.center = point
+                self.tableView.contentInset = inset
+            }
+        }
+    }
+}
+
+// MARK: - UI configurations
+extension ChatRoomViewController {
+    
+    func loadViews() {
+        self.navigationItem.title = "Let's Chat!"
+        self.navigationItem.backBarButtonItem?.title = "Run!"
+        
+        self.view.backgroundColor = UIColor(red: 24/255, green: 180/255, blue: 128/255, alpha: 1.0)
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.separatorStyle = .none
+        
+        self.view.addSubview(tableView)
+        self.view.addSubview(messageInputBar)
+        
+        self.messageInputBar.delegate = self
     }
 }
 
@@ -54,6 +110,52 @@ class ChatRoomViewController: UIViewController {
 extension ChatRoomViewController: MessageInputDelegate {
     func sendWasTapped(message: String) {
         
+    }
+}
+
+// MARK: - UITableViewDataSource protocol
+extension ChatRoomViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = MessageTableViewCell(style: .default, reuseIdentifier: "MessageCell")
+        cell.selectionStyle = .none
+        
+        let message = self.messages[indexPath.row]
+        cell.apply(message: message)
+        
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate protocol
+extension ChatRoomViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height = MessageTableViewCell.height(for: self.messages[indexPath.row])
+        return height
+    }
+}
+
+// MARK: - Messages
+extension ChatRoomViewController {
+    
+    fileprivate func insertNewMessageCell(_ message: Message) {
+        self.messages.append(message)
+        
+        let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        
+        self.tableView.beginUpdates()
+        self.tableView.insertRows(at: [indexPath], with: .bottom)
+        self.tableView.endUpdates()
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
 }
 
