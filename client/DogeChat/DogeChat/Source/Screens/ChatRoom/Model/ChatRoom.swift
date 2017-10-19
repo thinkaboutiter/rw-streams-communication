@@ -15,7 +15,7 @@ class ChatRoom: NSObject {
     var inputStream: InputStream!
     var outputStream: OutputStream!
     var username: String = ""
-    let maxReadLength: UInt = 4096
+    private let maxReadLength: Int = 4096
     
     // MARK: - Initialization
     override init() {
@@ -44,6 +44,10 @@ extension ChatRoom {
                                            &writeStream)
     
         try self.storeRetainedReferences(for: readStream, and: writeStream)
+        
+        // add as delegate
+        self.inputStream.delegate = self
+        
         try self.addStreamsPairToRunLoop(self.inputStream, self.outputStream)
         try self.openStreamsPair(self.inputStream, self.outputStream)
     }
@@ -113,6 +117,93 @@ extension ChatRoom {
         _ = valid_data.withUnsafeBytes({ (pointer: UnsafePointer<UInt8>) -> Void in
             self.outputStream.write(pointer, maxLength: valid_data.count)
         })
+    }
+}
+
+// MARK: - StreamDelegate protocol
+extension ChatRoom: StreamDelegate {
+    
+    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+        switch eventCode {
+        case Stream.Event.hasBytesAvailable:
+            Logger.network.message("hasBytesAvailable")
+            
+            // try to use the `aStream` as `InputStream`
+            if let valid_inputStream: InputStream = aStream as? InputStream {
+                self.readAvailableBytes(from: valid_inputStream)
+            }
+            else {
+                Logger.warning.message("`aStream` is not a \(String(describing: InputStream.self))")
+            }
+            
+        case Stream.Event.endEncountered:
+            Logger.network.message("endEncountered")
+            
+        case Stream.Event.errorOccurred:
+            Logger.network.message("errorOccurred")
+            
+        case Stream.Event.hasSpaceAvailable:
+            Logger.network.message("hasSpaceAvailable")
+            
+        case Stream.Event.openCompleted:
+            Logger.network.message("openCompleted")
+            
+        default:
+            Logger.network.message("some other event: \(eventCode)")
+        }
+    }
+}
+
+// MARK: - Stream processing
+extension ChatRoom {
+    
+    private func readAvailableBytes(from stream: InputStream) {
+        // we need a buffer into which we read the incomming bytes
+        let buffer: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: self.maxReadLength)
+        
+        // we loop for as long there are bytes to be read
+        while stream.hasBytesAvailable {
+            
+            // at each iteration we will read bytes from the stream and put them in the buffer
+            let numberOfBytesRead: Int = self.inputStream.read(buffer, maxLength: self.maxReadLength)
+            
+            // check for negative value
+            if numberOfBytesRead < 0 {
+                if let error = stream.streamError {
+                    Logger.error.message("Error: ").object(error)
+                    break
+                }
+            }
+            
+            // construct the Message object (if possible)
+            if let valid_message: Message = self.processedMessage(from: buffer, length: numberOfBytesRead) {
+                
+                // notify subscribers (delegates)
+            }
+        }
+    }
+    
+    private func processedMessage(from buffer: UnsafeMutablePointer<UInt8>, length: Int) -> Message? {
+        guard let valid_string: String = String(bytesNoCopy: buffer, length: length, encoding: .ascii, freeWhenDone: true) else {
+            Logger.error.message("Unable to create \(String(describing: String.self)) object from buffer")
+            return nil
+        }
+        
+        let stringsArray: [String] = valid_string.components(separatedBy: ":")
+        
+        guard let valid_name: String = stringsArray.first else {
+            Logger.error.message("Unable to obtain `name` part")
+            return nil
+        }
+        guard let valid_message: String = stringsArray.last else {
+            Logger.error.message("Unable to obtain `message` part")
+            return nil
+        }
+        
+        // decide whether this message is ours or not
+        let messageSender: MessageSender = (valid_name == self.username) ? .ourself : .someoneElse
+        let message: Message = Message(message: valid_message, messageSender: messageSender, username: valid_name)
+        return message
     }
 }
 
