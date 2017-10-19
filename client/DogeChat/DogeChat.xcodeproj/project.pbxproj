@@ -13,8 +13,6 @@
 		AE909BED1EB54B13009D9D95 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE909BEC1EB54B13009D9D95 /* Message.swift */; };
 		AE909BEF1EB54C4B009D9D95 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE909BEE1EB54C4B009D9D95 /* Label.swift */; };
 		AE909BF11EB63FDB009D9D95 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE909BF01EB63FDB009D9D95 /* MessageInputView.swift */; };
-		AEA5A1771EC3618C0041C7B4 /* Layouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA5A1761EC3618C0041C7B4 /* Layouts.swift */; };
-		AEA5A1791EC362150041C7B4 /* ChatRoomViewController+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA5A1781EC362150041C7B4 /* ChatRoomViewController+Table.swift */; };
 		AEC6BF3F1EAF320E007CA6E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC6BF3E1EAF320E007CA6E5 /* AppDelegate.swift */; };
 		AEC6BF411EAF320E007CA6E5 /* JoinChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC6BF401EAF320E007CA6E5 /* JoinChatViewController.swift */; };
 		AEC6BF461EAF320E007CA6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEC6BF451EAF320E007CA6E5 /* Assets.xcassets */; };
@@ -32,8 +30,6 @@
 		AE909BEC1EB54B13009D9D95 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AE909BEE1EB54C4B009D9D95 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		AE909BF01EB63FDB009D9D95 /* MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
-		AEA5A1761EC3618C0041C7B4 /* Layouts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layouts.swift; sourceTree = "<group>"; };
-		AEA5A1781EC362150041C7B4 /* ChatRoomViewController+Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatRoomViewController+Table.swift"; sourceTree = "<group>"; };
 		AEC6BF3B1EAF320E007CA6E5 /* DogeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEC6BF3E1EAF320E007CA6E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEC6BF401EAF320E007CA6E5 /* JoinChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinChatViewController.swift; sourceTree = "<group>"; };
@@ -84,8 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				AE28D6E41EC0AB9800E886B9 /* StringExtension.swift */,
-				AEA5A1781EC362150041C7B4 /* ChatRoomViewController+Table.swift */,
-				AEA5A1761EC3618C0041C7B4 /* Layouts.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -269,9 +263,7 @@
 				AE909BED1EB54B13009D9D95 /* Message.swift in Sources */,
 				AE28D6E51EC0AB9800E886B9 /* StringExtension.swift in Sources */,
 				AEC6BF3F1EAF320E007CA6E5 /* AppDelegate.swift in Sources */,
-				AEA5A1771EC3618C0041C7B4 /* Layouts.swift in Sources */,
 				AEC6BF511EAF345A007CA6E5 /* ChatRoomViewController.swift in Sources */,
-				AEA5A1791EC362150041C7B4 /* ChatRoomViewController+Table.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
