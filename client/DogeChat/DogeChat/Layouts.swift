@@ -38,7 +38,7 @@ extension ChatRoomViewController {
     
     loadViews()
   }
-  func keyboardWillChange(notification: NSNotification) {
+  @objc func keyboardWillChange(notification: NSNotification) {
     if let userInfo = notification.userInfo {
       let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)!.cgRectValue
       let messageBarHeight = self.messageInputBar.bounds.size.height

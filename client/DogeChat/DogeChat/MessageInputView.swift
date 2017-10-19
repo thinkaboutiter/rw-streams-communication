@@ -59,7 +59,7 @@ class MessageInputView: UIView {
     addSubview(sendButton)
   }
   
-  func sendTapped() {
+  @objc func sendTapped() {
     if let delegate = delegate, let message = textView.text {
       delegate.sendWasTapped(message:  message)
       textView.text = ""

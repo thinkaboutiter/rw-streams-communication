@@ -72,8 +72,8 @@ class MessageTableViewCell: UITableViewCell {
   
   private class func height(forText text: String, fontSize: CGFloat, maxSize: CGSize) -> CGFloat {
     let font = UIFont(name: "Helvetica", size: fontSize)!
-    let attrString = NSAttributedString(string: text, attributes:[NSFontAttributeName: font,
-                                                                  NSForegroundColorAttributeName: UIColor.white])
+    let attrString = NSAttributedString(string: text, attributes:[NSAttributedStringKey.font: font,
+                                                                  NSAttributedStringKey.foregroundColor: UIColor.white])
     let textHeight = attrString.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, context: nil).size.height
 
     return textHeight
